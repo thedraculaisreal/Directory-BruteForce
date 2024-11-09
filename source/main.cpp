@@ -7,7 +7,7 @@ size_t writeCallback(void* contents, size_t size, size_t nmemb, std::string* out
 int main()
 {
 	CURL* curl; // defining handle for libcurl.
-	CURLcode res; // stores result to check if success.
+	CURLcode result; // stores result to check if success.
 	std::string response; // holds response.
 	
 	curl = curl_easy_init(); // intializes libcurl.
@@ -19,9 +19,9 @@ int main()
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeCallback); // handling data recieved.
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response); // writing data to response.
 
-		res = curl_easy_perform(curl); // performs http request.
+		result = curl_easy_perform(curl); // performs http request.
 
-		if (res != CURLE_OK)
+		if (result != CURLE_OK)
 		{
 			printf("Curl easy perform failed\n");
 			return 1;
